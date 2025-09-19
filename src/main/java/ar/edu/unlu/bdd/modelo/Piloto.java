@@ -23,6 +23,9 @@ public class Piloto {
     @Column(name = "EQUIPO", nullable = false)
     private int equipo;
 
+    public Piloto() {
+    }
+
     public Piloto(int idp, String apeNom, String nacionalidad, int puntos, int equipo) {
         this.idp = idp;
         this.apeNom = apeNom;
