@@ -30,6 +30,13 @@ public class Equipo {
         this.temporadasCompetidas = temporadasCompetidas;
     }
 
+    public Equipo(int ide, String nombre, String paisOrigen, int temporadasCompetidas) {
+        this.ide = ide;
+        this.nombre = nombre;
+        this.paisOrigen = paisOrigen;
+        this.temporadasCompetidas = temporadasCompetidas;
+    }
+
     public int getIde() {
         return ide;
     }

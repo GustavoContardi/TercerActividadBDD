@@ -48,7 +48,7 @@ public class CFZValidatorUtils {
     }
 
     public static Integer solicitarNumeroPorTeclado() {
-        return solicitarNumeroPorTeclado("Ingrese un número:");
+        return solicitarNumeroPorTeclado("Ingrese un número: ");
     }
 
     /**
@@ -79,7 +79,7 @@ public class CFZValidatorUtils {
     }
 
     public static String solicitarEntradaPorTeclado() {
-        return solicitarEntradaPorTeclado("Ingrese un valor:");
+        return solicitarEntradaPorTeclado("Ingrese un valor: ");
     }
 
     public static Timestamp solicitarTimeStampPorTeclado(){

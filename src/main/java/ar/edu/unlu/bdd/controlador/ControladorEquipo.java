@@ -29,14 +29,39 @@ public class ControladorEquipo {
         session.persist(equipo);
         session.getTransaction().commit();
         session.close();
-        logger.info("Equipo {} creado correctamente", equipo.getNombre());
+        logger.info("Equipo -{}- creado correctamente", equipo.getNombre());
         return equipo;
     }
 
-    public void baja() {
+    public void baja(Integer id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Query<Equipo> query;
+        query = session.createQuery("FROM Equipo WHERE ide = :id", Equipo.class);
+        query.setParameter("id", id);
+
+        List<Equipo> result = query.list();
+        if (result.isEmpty()) {
+            logger.warn("El id -{}- NO existe.", id);
+        } else {
+            Equipo equipo = result.getFirst();
+            session.remove(equipo);
+            session.getTransaction().commit();
+        }
+        session.close();
     }
 
-    public void modificacion() {
+    public Equipo modificacion(Integer id, String nombre, String pais, Integer temporadas) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Equipo equipo = new Equipo(id, nombre, pais, temporadas);
+        session.update(equipo);
+        session.getTransaction().commit();
+
+        session.close();
+        return equipo;
     }
 
     public void consulta(Integer id) {
@@ -49,9 +74,14 @@ public class ControladorEquipo {
             query = session.createQuery("FROM Equipo WHERE ide = :id", Equipo.class);
             query.setParameter("id", id);
         }
+
         List<Equipo> lista = query.list();
-        for (Equipo equipo : lista) {
-            System.out.println(equipo.getNombre() + "\n");
+        if (lista.isEmpty()) {
+            logger.warn("No se encuentra el ID: {}", id);
+        } else {
+            for (Equipo equipo : lista) {
+                System.out.println(equipo.getNombre() + "\n");
+            }
         }
         session.close();
     }

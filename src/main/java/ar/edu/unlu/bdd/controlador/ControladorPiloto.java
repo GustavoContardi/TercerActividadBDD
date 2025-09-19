@@ -1,6 +1,5 @@
 package ar.edu.unlu.bdd.controlador;
 
-import ar.edu.unlu.bdd.modelo.Equipo;
 import ar.edu.unlu.bdd.modelo.Piloto;
 import ar.edu.unlu.bdd.vista.VistaPiloto;
 import org.hibernate.Session;
@@ -81,12 +80,11 @@ public class ControladorPiloto {
             }
             List<Piloto> list = query.list();
             if (!list.isEmpty()) {
-                for(Piloto p: list) {
+                for (Piloto p : list) {
                     retornoConsulta = p.toString();
                     v.mostrarConsulta(retornoConsulta);
                 }
-            }
-            else {
+            } else {
                 if (id == 0) {
                     retornoConsulta = "La tabla de pilotos está vacía...";
                     v.mostrarConsulta(retornoConsulta);
@@ -95,8 +93,7 @@ public class ControladorPiloto {
                     v.mostrarConsulta(retornoConsulta);
                 }
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         session.close();

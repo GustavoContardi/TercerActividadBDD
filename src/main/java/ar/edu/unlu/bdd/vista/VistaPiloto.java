@@ -1,10 +1,8 @@
 package ar.edu.unlu.bdd.vista;
 
 import ar.edu.unlu.bdd.controlador.ControladorPiloto;
+import ar.edu.unlu.bdd.utilidades.CFZValidatorUtils;
 import ar.edu.unlu.bdd.utilidades.Listado;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class VistaPiloto {
 
@@ -15,21 +13,10 @@ public class VistaPiloto {
     }
 
     public void menuVistaPiloto() {
-        Scanner scanner = new Scanner(System.in);
         int opc = 0;
         do {
             Listado.listarMenu("Piloto");
-
-            // leer opción
-            if (scanner.hasNextInt()) {
-                opc = scanner.nextInt();
-                scanner.nextLine(); // limpiar el buffer
-            } else {
-                System.out.println("Entrada inválida, ingrese un número.");
-                scanner.nextLine(); // descartar entrada incorrecta
-                continue;
-            }
-
+            opc = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese su opcion: ");
             switch (opc) {
                 case 1 -> inputAlta(controladorPiloto);
                 case 2 -> inputBaja(controladorPiloto);
@@ -39,12 +26,9 @@ public class VistaPiloto {
                 default -> System.out.println("Opción incorrecta.");
             }
         } while (opc != 5);
-        scanner.close();
     }
 
     private void inputAlta(ControladorPiloto controladorPiloto) {
-        Scanner scanner = new Scanner(System.in);
-
         int idp = 0;
         String apeNom = "";
         String nacionalidad = "";
@@ -55,16 +39,14 @@ public class VistaPiloto {
 
         // Entrada APENOM
         while (true) {
-            System.out.print("Ingrese el Apellido y Nombre del Piloto: ");
-            apeNom = scanner.nextLine().trim();
+            apeNom = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese el Apellido y Nombre del Piloto: ");
             if (!apeNom.isEmpty() && apeNom.length() <= 100) break;
             else System.out.println("El nombre no puede estar vacío y debe tener menos de 100 caracteres.");
         }
 
         // Entrada NACIONALIDAD
         while (true) {
-            System.out.print("Ingrese la Nacionalidad del Piloto: ");
-            nacionalidad = scanner.nextLine().trim();
+            nacionalidad = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese la Nacionalidad del Piloto: ");
             if (!nacionalidad.isEmpty() && nacionalidad.length() <= 100) break;
             else System.out.println("La nacionalidad no puede estar vacía y debe tener menos de 100 caracteres.");
         }
@@ -73,48 +55,27 @@ public class VistaPiloto {
 
         // Entrada EQUIPO
         while (true) {
-            try {
-                System.out.print("Ingrese ID del Equipo del Piloto: ");
-                equipo = scanner.nextInt();
-                scanner.nextLine();
-                if (equipo > 0) break;
-                else System.out.println("El ID del equipo debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine();
-            }
+            equipo = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese ID del Equipo del Piloto: ");
+            if (equipo > 0) break;
+            else System.out.println("El ID del equipo debe ser positivo.");
         }
-
         controladorPiloto.alta(idp, apeNom, nacionalidad, puntos, equipo);
 
     }
 
     private void inputBaja(ControladorPiloto controladorPiloto) {
-        Scanner scanner = new Scanner(System.in);
-
         int idp = 0;
 
         // Entrada IDP
         while (true) {
-            try {
-                System.out.print("Ingrese ID del Piloto: ");
-                idp = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
-                if (idp > 0) break;
-                else System.out.println("El ID debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine(); // descartar entrada inválida
-            }
+            idp = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese ID del Piloto: ");
+            if (idp > 0) break;
+            else System.out.println("El ID debe ser positivo.");
         }
-
         controladorPiloto.baja(idp);
-
     }
 
     private void inputModificacion(ControladorPiloto controladorPiloto) {
-        Scanner scanner = new Scanner(System.in);
-
         int idp = 0;
         String apeNom = "";
         String nacionalidad = "";
@@ -125,32 +86,23 @@ public class VistaPiloto {
 
         // Entrada IDP
         while (true) {
-            try {
-                System.out.print("Ingrese ID del Piloto: ");
-                idp = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
-                if (idp > 0) break;
-                else System.out.println("El ID debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine(); // descartar entrada inválida
-            }
+            idp = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese ID del Piloto: ");
+            if (idp > 0) break;
+            else System.out.println("El ID debe ser positivo.");
         }
 
         //  ++ Modificacion del Piloto
 
         // Entrada APENOM
         while (true) {
-            System.out.print("Ingrese el Apellido y Nombre del Piloto: ");
-            apeNom = scanner.nextLine().trim();
+            apeNom = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese el Apellido y Nombre del Piloto: ");
             if (!apeNom.isEmpty() && apeNom.length() <= 100) break;
             else System.out.println("El nombre no puede estar vacío y debe tener menos de 100 caracteres.");
         }
 
         // Entrada NACIONALIDAD
         while (true) {
-            System.out.print("Ingrese la Nacionalidad del Piloto: ");
-            nacionalidad = scanner.nextLine().trim();
+            nacionalidad = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese la Nacionalidad del Piloto: ");
             if (!nacionalidad.isEmpty() && nacionalidad.length() <= 100) break;
             else System.out.println("La nacionalidad no puede estar vacía y debe tener menos de 100 caracteres.");
         }
@@ -158,55 +110,29 @@ public class VistaPiloto {
         //En el alta hardcodear a 0
         // Entrada PUNTOS
         while (true) {
-            try {
-                System.out.print("Ingrese los Puntos del Piloto: ");
-                puntos = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
-                if (puntos >= 0) break;
-                else System.out.println("Los puntos no pueden ser negativos.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine();
-            }
+            puntos = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese los Puntos del Piloto: ");
+            if (puntos >= 0) break;
+            else System.out.println("Los puntos no pueden ser negativos.");
         }
 
         // Entrada EQUIPO
         while (true) {
-            try {
-                System.out.print("Ingrese ID del Equipo del Piloto: ");
-                equipo = scanner.nextInt();
-                scanner.nextLine();
-                if (equipo > 0) break;
-                else System.out.println("El ID del equipo debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine();
-            }
+            equipo = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese ID del Equipo del Piloto: ");
+            if (equipo > 0) break;
+            else System.out.println("El ID del equipo debe ser positivo.");
         }
-
         controladorPiloto.modificacion(idp, apeNom, nacionalidad, puntos, equipo);
 
     }
 
     private void inputConsulta(ControladorPiloto controladorPiloto) {
-        Scanner scanner = new Scanner(System.in);
-
-        int idp = 0;
-
+        int idp;
         // Entrada IDP
         while (true) {
-            try {
-                System.out.print("Ingrese ID del Piloto: ");
-                idp = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
-                if (idp >= 0) break;
-                else System.out.println("El ID debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine(); // descartar entrada inválida
-            }
+            idp = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese ID del Piloto: ");
+            if (idp >= 0) break;
+            else System.out.println("El ID debe ser positivo.");
         }
-
         controladorPiloto.consulta(idp);
 
     }
