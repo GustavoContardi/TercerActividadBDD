@@ -17,7 +17,7 @@ public class ControladorPiloto {
     }
 
     // Alta
-    public void alta(){
+    public void alta() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
@@ -28,6 +28,36 @@ public class ControladorPiloto {
     }
 
     //Baja
+    public void baja() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        // BLA BLA BLA BLA
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
     //Modificacion
+    public void modificacion() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        // BLA BLA BLA BLA
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
     //Consulta
+    public void consulta() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        // BLA BLA BLA BLA
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
 }

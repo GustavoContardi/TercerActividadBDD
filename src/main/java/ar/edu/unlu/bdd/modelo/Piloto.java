@@ -19,7 +19,7 @@ public class Piloto {
     @Column(name = "PUNTOS", nullable = false)
     private int puntos;
 
-    // FK FK FK
+    // FK
     @Column(name = "EQUIPO", nullable = false)
     private int equipo;
 }
