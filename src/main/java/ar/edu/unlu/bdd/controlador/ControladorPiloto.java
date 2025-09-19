@@ -84,10 +84,10 @@ public class ControladorPiloto {
             session.beginTransaction();
             Query query;
             if (idp == 0) {
-                query = session.createQuery("select IDP , APENOM , NACIONALIDAD , PUNTOS , EQUIPO FROM PILOTO");
+                query = session.createQuery("select IDP , APENOM , NACIONALIDAD , PUNTOS , EQUIPO FROM TBL_PILOTO");
             }
             else {
-                query = session.createQuery("select IDP , APENOM , NACIONALIDAD , PUNTOS , EQUIPO FROM PILOTO where IDP = " + Integer.toString(idp));
+                query = session.createQuery("select IDP , APENOM , NACIONALIDAD , PUNTOS , EQUIPO FROM TBL_PILOTO where IDP = " + Integer.toString(idp));
             }
             List<Piloto> list = query.list();
             if (!list.isEmpty()) {
