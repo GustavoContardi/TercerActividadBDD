@@ -44,19 +44,7 @@ public class VistaPiloto {
         int puntos = 0;
         int equipo = 0;
 
-        // Entrada IDP
-        while (true) {
-            try {
-                System.out.print("Ingrese ID del Piloto: ");
-                idp = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
-                if (idp > 0) break;
-                else System.out.println("El ID debe ser positivo.");
-            } catch (InputMismatchException e) {
-                System.out.println("Error: debe ingresar un número entero.");
-                scanner.nextLine(); // descartar entrada inválida
-            }
-        }
+        // En alta el IDP es generado automaticamente
 
         // Entrada APENOM
         while (true) {
