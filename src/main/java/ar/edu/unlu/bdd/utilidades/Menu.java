@@ -1,9 +1,9 @@
 package ar.edu.unlu.bdd.utilidades;
 
-import ar.edu.unlu.bdd.vista.VistaCarrera;
-import ar.edu.unlu.bdd.vista.VistaCompiteEn;
-import ar.edu.unlu.bdd.vista.VistaEquipo;
-import ar.edu.unlu.bdd.vista.VistaPiloto;
+import ar.edu.unlu.bdd.controlador.ControladorCarrera;
+import ar.edu.unlu.bdd.controlador.ControladorCompiteEn;
+import ar.edu.unlu.bdd.controlador.ControladorEquipo;
+import ar.edu.unlu.bdd.controlador.ControladorPiloto;
 import org.hibernate.SessionFactory;
 
 import java.util.Scanner;
@@ -35,10 +35,10 @@ public class Menu {
             }
 
             switch (opc) {
-                case 1 -> operarPilotos();
-                case 2 -> operarEquipos();
-                case 3 -> operarCarreras();
-                case 4 -> operarParticipaciones();
+                case 1 -> operarPilotos(sessionFactory);
+                case 2 -> operarEquipos(sessionFactory);
+                case 3 -> operarCarreras(sessionFactory);
+                case 4 -> operarParticipaciones(sessionFactory);
                 case 5 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción incorrecta.");
             }
@@ -47,20 +47,23 @@ public class Menu {
         scanner.close();
     }
 
-    private static void operarPilotos() {
-        new VistaPiloto();
+    private static void operarPilotos(SessionFactory sessionFactory) {
+        ControladorPiloto controller = new ControladorPiloto(sessionFactory);
+        controller.iniciarVista();
     }
 
-    private static void operarEquipos() {
-        new VistaEquipo();
+    private static void operarEquipos(SessionFactory sessionFactory) {
+        ControladorEquipo controller = new ControladorEquipo(sessionFactory);
+        controller.iniciarVista();
     }
 
-    private static void operarCarreras() {
-        new VistaCarrera();
+    private static void operarCarreras(SessionFactory sessionFactory) {
+        ControladorCarrera controller = new ControladorCarrera(sessionFactory);
+        controller.iniciarVista();
     }
 
-    private static void operarParticipaciones() {
-        new VistaCompiteEn();
+    private static void operarParticipaciones(SessionFactory sessionFactory) {
+        ControladorCompiteEn controller = new ControladorCompiteEn(sessionFactory);
+        controller.iniciarVista();
     }
-
 }
