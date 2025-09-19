@@ -24,7 +24,6 @@ public class VistaCarrera {
 
     private void seleccionarOpcion(){
         int opcion;
-        Scanner sc = new Scanner(System.in);
 
         opcion = CFZValidatorUtils.solicitarNumeroPorTeclado();
 

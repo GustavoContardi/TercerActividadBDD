@@ -14,7 +14,7 @@
 
         <!-- Entidades -->
         <mapping class="ar.edu.unlu.bdd.modelo.Carrera"/>
-<!--        <mapping class="ar.edu.unlu.bdd.modelo.CompiteEn"/>-->
+        <mapping class="ar.edu.unlu.bdd.modelo.CompiteEn"/>
         <mapping class="ar.edu.unlu.bdd.modelo.Equipo"/>
         <mapping class="ar.edu.unlu.bdd.modelo.Piloto"/>
     </session-factory>
