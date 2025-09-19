@@ -21,6 +21,7 @@ public class ControladorPiloto {
 
     public void iniciarVista() {
         this.v = new VistaPiloto(this);
+        v.menuVistaPiloto();
     }
 
     // Alta
@@ -82,17 +83,18 @@ public class ControladorPiloto {
             if (!list.isEmpty()) {
                 for(Piloto p: list) {
                     retornoConsulta = p.toString();
+                    v.mostrarConsulta(retornoConsulta);
                 }
             }
             else {
                 if (id == 0) {
                     retornoConsulta = "La tabla de pilotos está vacía...";
+                    v.mostrarConsulta(retornoConsulta);
                 } else {
                     retornoConsulta = "No se encontró el Piloto buscado...";
+                    v.mostrarConsulta(retornoConsulta);
                 }
             }
-            //v.mostrarConsulta(retornoConsulta);
-            System.out.println(retornoConsulta);
         }
         catch(Exception e) {
             e.printStackTrace();

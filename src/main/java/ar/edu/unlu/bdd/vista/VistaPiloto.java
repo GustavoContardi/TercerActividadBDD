@@ -7,7 +7,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class VistaPiloto {
+
+    private final ControladorPiloto controladorPiloto;
+
     public VistaPiloto(ControladorPiloto controladorPiloto) {
+        this.controladorPiloto = controladorPiloto;
+    }
+
+    public void menuVistaPiloto() {
         Scanner scanner = new Scanner(System.in);
         int opc = 0;
         do {
