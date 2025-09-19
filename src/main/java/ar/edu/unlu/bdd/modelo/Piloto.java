@@ -22,4 +22,43 @@ public class Piloto {
     // FK
     @Column(name = "EQUIPO", nullable = false)
     private int equipo;
+
+    public Piloto(int idp, String apeNom, String nacionalidad, int puntos, int equipo) {
+        this.idp = idp;
+        this.apeNom = apeNom;
+        this.nacionalidad = nacionalidad;
+        this.puntos = puntos;
+        this.equipo = equipo;
+    }
+
+    public int getIdp() {
+        return idp;
+    }
+
+    public String getApeNom() {
+        return apeNom;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public int getEquipo() {
+        return equipo;
+    }
+
+    @Override
+    public String toString() {
+        return "=== PILOTO ===\n" +
+                "ID: " + idp + "\n" +
+                "Apellido y Nombre: " + apeNom + "\n" +
+                "Nacionalidad: " + nacionalidad + "\n" +
+                "Puntos: " + puntos + "\n" +
+                "Equipo (ID): " + equipo;
+    }
+
 }
