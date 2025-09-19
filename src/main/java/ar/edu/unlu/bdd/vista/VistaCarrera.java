@@ -16,6 +16,7 @@ public class VistaCarrera {
     private ControladorCarrera controlador;
 
     public VistaCarrera(ControladorCarrera controladorCarrera) {
+        this.controlador = controladorCarrera;
         Listado.listarMenu("Carrera");
         seleccionarOpcion();
     }
@@ -58,81 +59,25 @@ public class VistaCarrera {
         String circuito, pais;
         Timestamp fecha = null; // qsy
 
-        Scanner sc = new Scanner(System.in);
+        circuito = CFZValidatorUtils.solicitarEntradaPorTeclado("Nombre del circuito: ");
 
-        System.out.print("ID de la carrera: ");
-        idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        vueltas = CFZValidatorUtils.solicitarNumeroPorTeclado("Cantidad de vueltas: ");
 
-        System.out.print("Nombre del circuito: ");
-        circuito = CFZValidatorUtils.solicitarEntradaPorTeclado();
+        pais = CFZValidatorUtils.solicitarEntradaPorTeclado("Pais: ");
 
-        System.out.print("Cantidad de vueltas: ");
-        vueltas = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        fecha = CFZValidatorUtils.solicitarTimeStampPorTeclado();
 
-        System.out.print("Pais: ");
-        pais = CFZValidatorUtils.solicitarEntradaPorTeclado();
-
-        System.out.print("Fecha (dd/MM/yyyy): ");
-        String inFecha = sc.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            // Parseamos la fecha
-            LocalDate fecha2 = LocalDate.parse(inFecha, formatter);
-
-            // Generamos Timestamp con hora 00:00:00
-            LocalDateTime fechaHora = fecha2.atStartOfDay();
-            fecha = Timestamp.valueOf(fechaHora);
-
-        } catch (Exception e) {
-            System.out.println("⚠️ Fecha inválida. Use el formato dd/MM/yyyy.");
-        }
-
-        System.out.print("Ganador: ");
-        ganador = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        ganador = CFZValidatorUtils.solicitarNumeroPorTeclado("Ganador: ");
 
         controlador.alta(0, circuito, pais, vueltas, fecha, ganador);
     }
 
     private void gestionarBorrar() {
-        int idCarrera, vueltas, ganador;
-        String circuito, pais;
-        Timestamp fecha = null; // qsy
+        int idCarrera;
 
-        Scanner sc = new Scanner(System.in);
+        idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado("ID de la carrera: ");
 
-        System.out.print("ID de la carrera: ");
-        idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado();
-
-        System.out.print("Nombre del circuito: ");
-        circuito = CFZValidatorUtils.solicitarEntradaPorTeclado();
-
-        System.out.print("Cantidad de vueltas: ");
-        vueltas = CFZValidatorUtils.solicitarNumeroPorTeclado();
-
-        System.out.print("Pais: ");
-        pais = CFZValidatorUtils.solicitarEntradaPorTeclado();
-
-        System.out.print("Fecha (dd/MM/yyyy): ");
-        String inFecha = sc.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            // Parseamos la fecha
-            LocalDate fecha2 = LocalDate.parse(inFecha, formatter);
-
-            // Generamos Timestamp con hora 00:00:00
-            LocalDateTime fechaHora = fecha2.atStartOfDay();
-            fecha = Timestamp.valueOf(fechaHora);
-
-        } catch (Exception e) {
-            System.out.println("⚠️ Fecha inválida. Use el formato dd/MM/yyyy.");
-        }
-
-        System.out.print("Ganador: ");
-        ganador = CFZValidatorUtils.solicitarNumeroPorTeclado();
-
-        controlador.baja(idCarrera, circuito, pais, vueltas, fecha, ganador);
+        controlador.baja(idCarrera);
     }
 
     private void gestionarModificar() {
@@ -140,46 +85,24 @@ public class VistaCarrera {
         String circuito, pais;
         Timestamp fecha = null; // qsy
 
-        Scanner sc = new Scanner(System.in);
+        idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado("ID de la carrera: ");
 
-        System.out.print("ID de la carrera: ");
-        idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        circuito = CFZValidatorUtils.solicitarEntradaPorTeclado("Nombre del circuito: ");
 
-        System.out.print("Nombre del circuito: ");
-        circuito = CFZValidatorUtils.solicitarEntradaPorTeclado();
+        vueltas = CFZValidatorUtils.solicitarNumeroPorTeclado("Cantidad de vueltas: ");
 
-        System.out.print("Cantidad de vueltas: ");
-        vueltas = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        pais = CFZValidatorUtils.solicitarEntradaPorTeclado("Pais: ");
 
-        System.out.print("Pais: ");
-        pais = CFZValidatorUtils.solicitarEntradaPorTeclado();
+        fecha = CFZValidatorUtils.solicitarTimeStampPorTeclado();
 
-        System.out.print("Fecha (dd/MM/yyyy): ");
-        String inFecha = sc.nextLine();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            // Parseamos la fecha
-            LocalDate fecha2 = LocalDate.parse(inFecha, formatter);
-
-            // Generamos Timestamp con hora 00:00:00
-            LocalDateTime fechaHora = fecha2.atStartOfDay();
-            fecha = Timestamp.valueOf(fechaHora);
-
-        } catch (Exception e) {
-            System.out.println("⚠️ Fecha inválida. Use el formato dd/MM/yyyy.");
-        }
-
-        System.out.print("Ganador: ");
-        ganador = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        ganador = CFZValidatorUtils.solicitarNumeroPorTeclado("Ganador: ");
 
         controlador.modificacion(idCarrera, circuito, pais, vueltas, fecha, ganador);
     }
 
 
     private void gestionarConsulta() {
-        System.out.print("ID de la carrera: ");
-        int idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado();
+        int idCarrera = CFZValidatorUtils.solicitarNumeroPorTeclado("ID de la carrera: ");
 
         controlador.consulta(idCarrera);
     }

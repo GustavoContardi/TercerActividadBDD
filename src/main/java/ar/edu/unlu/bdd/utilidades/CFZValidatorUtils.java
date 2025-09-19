@@ -1,5 +1,9 @@
 package ar.edu.unlu.bdd.utilidades;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CFZValidatorUtils {
@@ -77,4 +81,37 @@ public class CFZValidatorUtils {
     public static String solicitarEntradaPorTeclado() {
         return solicitarEntradaPorTeclado("Ingrese un valor:");
     }
+
+    public static Timestamp solicitarTimeStampPorTeclado(){
+        Timestamp fecha = null;
+        String inFecha;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        boolean fechaValida = false;
+
+        do {
+            System.out.print("Ingrese una fecha (dd/MM/yyyy): ");
+            inFecha = teclado.nextLine();
+
+            try {
+                // Parseamos la fecha
+                LocalDate fecha2 = LocalDate.parse(inFecha, formatter);
+
+                // Generamos Timestamp con hora 00:00:00
+                LocalDateTime fechaHora = fecha2.atStartOfDay();
+                fecha = Timestamp.valueOf(fechaHora);
+
+                fechaValida = true; // si llegamos acá, la fecha es válida
+
+            } catch (Exception e) {
+                System.out.println("\n***********************************************");
+                System.out.println("Debe ingresar una fecha valida (dd/MM/yyyy)");
+                System.out.println("***********************************************\n");
+            }
+        } while (!fechaValida);
+
+        return fecha;
+
+    }
+
 }

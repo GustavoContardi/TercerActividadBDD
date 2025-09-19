@@ -37,12 +37,11 @@ public class ControladorCarrera {
 
     }
 
-    public void baja(int idc, String circuito, String pais, int vueltas, Timestamp fecha, int ganador){
+    public void baja(int idc){
         Session session = sessionFactory.openSession();
         try{
-            Carrera carrera = new Carrera(circuito, pais, fecha, vueltas, ganador);
             session.beginTransaction();
-            session.remove(carrera);
+
             session.getTransaction().commit();
             sessionFactory.close();
 
