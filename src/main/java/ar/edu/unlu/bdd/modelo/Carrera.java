@@ -33,8 +33,8 @@ public class Carrera {
         this.idc = 0;
     }
 
-    public Carrera(String nombreCircuito, String pais, Timestamp fecha, int vueltas, int ganador) {
-        this();
+    public Carrera(int idc, String nombreCircuito, String pais, Timestamp fecha, int vueltas, int ganador) {
+        this.idc = idc;
         this.nombreCircuito = nombreCircuito;
         this.pais = pais;
         this.fecha = fecha;
@@ -92,10 +92,10 @@ public class Carrera {
 
     @Override
     public String toString() {
-        return "Carrera {" +
+        return "Carrera -" +
                 "IDC=" + idc +
                 ", Nombre circuito='" + nombreCircuito +
-                ", País='" + pais +
+                ", País=" + pais +
                 ", Fecha=" + fecha +
                 ", Cantidad de vueltas=" + vueltas +
                 ", Ganador=" + Ganador;

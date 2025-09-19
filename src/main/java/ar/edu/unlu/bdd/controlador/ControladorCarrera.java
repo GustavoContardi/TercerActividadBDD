@@ -1,6 +1,7 @@
 package ar.edu.unlu.bdd.controlador;
 
 import ar.edu.unlu.bdd.modelo.Carrera;
+import ar.edu.unlu.bdd.modelo.Equipo;
 import ar.edu.unlu.bdd.vista.VistaCarrera;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,7 +27,7 @@ public class ControladorCarrera {
     public void alta(int idc, String circuito, String pais, int vueltas, Timestamp fecha, int ganador){
         Session session = sessionFactory.openSession();
         try{
-            Carrera carrera = new Carrera(circuito, pais, fecha, vueltas, ganador);
+            Carrera carrera = new Carrera(idc, circuito, pais, fecha, vueltas, ganador);
             session.beginTransaction();
             session.persist(carrera);
             session.getTransaction().commit();
@@ -39,20 +40,21 @@ public class ControladorCarrera {
 
     public void baja(int idc){
         Session session = sessionFactory.openSession();
-        try{
-            session.beginTransaction();
+        session.beginTransaction();
+        Query<Carrera> query;
+        query = session.createQuery("FROM Carrera WHERE idc = :idc", Carrera.class);
+        query.setParameter("idc", idc);
 
-            session.getTransaction().commit();
-            sessionFactory.close();
-
-        }catch(Exception e)
-        {e.printStackTrace();}
+        Carrera c = query.uniqueResult();
+        session.delete(c);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void modificacion(int idc, String circuito, String pais, int vueltas, Timestamp fecha, int ganador){
         Session session = sessionFactory.openSession();
         try{
-            Carrera carrera = new Carrera(circuito, pais, fecha, vueltas, ganador);
+            Carrera carrera = new Carrera(idc, circuito, pais, fecha, vueltas, ganador);
             session.beginTransaction();
             session.update(carrera);
             session.getTransaction().commit();
@@ -64,28 +66,18 @@ public class ControladorCarrera {
 
     public void consulta(int idc){
         Session session = sessionFactory.openSession();
-        try {
-            session.beginTransaction();
-
-            Query query ;
-            if (idc == 0) {
-                query = session.createQuery("select IDC, NOMBRE_CIRCUITO, PAIS, CANTIDAD_VUELTAS, FECHA, GANADOR  FROM TBL_CARRERA");
-            }
-            else {
-                query = session.createQuery("select IDC, NOMBRE_CIRCUITO, PAIS, CANTIDAD_VUELTAS, FECHA, GANADOR  FROM TBL_CARRERA WHERE = " + idc);
-            }
-
-            List<Carrera> list = query.list();
-            if (!list.isEmpty()) {
-                for(Carrera c: list) {
-                    System.out.println(c.toString());
-                }
-            }
+        session.beginTransaction();
+        Query<Carrera> query;
+        if (idc == 0) {
+            query = session.createQuery("FROM Carrera", Carrera.class);
+        } else {
+            query = session.createQuery("FROM Carrera WHERE idc = :idc", Carrera.class);
+            query.setParameter("idc", idc);
         }
-
-        catch(Exception e)
-        {e.printStackTrace();}
-
+        List<Carrera> lista = query.list();
+        for (Carrera c : lista) {
+            System.out.println(c.toString() + "\n");
+        }
         session.close();
 
     }
