@@ -24,6 +24,7 @@ public class CompiteEn {
     @Column(name = "PTS_OBTENIDOS")
     private int ptsObtenidos;
 
+    // El piloto cometió safety car (1). Si no cometió safety car (0).
     @Column(name = "SAFETY_CAR", nullable = false)
     private int pioloto;
 
