@@ -13,15 +13,24 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mariadb.version>3.1.4</mariadb.version>
+        <mysql.version>8.2.0</mysql.version>
+        <mysql.connector.version>9.4.0</mysql.connector.version> <!-- versión sugerida -->
         <hibernate.version>6.4.4.Final</hibernate.version>
     </properties>
 
     <dependencies>
         <!-- driver de MariaDB -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>${mariadb.version}</version>
+        </dependency>-->
+
+        <!-- MySQL Connector/J -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.connector.version}</version>
         </dependency>
 
         <!-- JPA API -->
@@ -29,6 +38,12 @@
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- Logging -->

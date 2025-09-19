@@ -1,9 +1,9 @@
-package ar.edu.unlu.bdd.utils;
+package ar.edu.unlu.bdd.utilidades;
 
-import java.sql.Connection;
+import org.hibernate.SessionFactory;
 
 public class Menu {
-    public Menu(Connection con) {
+    public Menu(SessionFactory sessionFactory) {
          /*
             La aplicación deberá permitir, utilizando un menú de opciones:
                 - insertar
@@ -12,8 +12,5 @@ public class Menu {
                 - consultar
             filas de las tablas, utilizando los métodos de ORMs.
         */
-        for (int i = 0; i < 10; i++){
-            System.out.println("hola");
-        }
     }
 }

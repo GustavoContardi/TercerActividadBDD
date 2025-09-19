@@ -1,7 +1,6 @@
 package ar.edu.unlu.bdd.modelo;
 
 import jakarta.persistence.*;
-import org.checkerframework.checker.units.qual.C;
 
 @Entity
 @Table(name = "TBL_EQUIPO")
