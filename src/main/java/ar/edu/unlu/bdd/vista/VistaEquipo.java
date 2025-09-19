@@ -9,30 +9,19 @@ import java.util.Scanner;
 
 public class VistaEquipo {
     public VistaEquipo(ControladorEquipo controladorEquipo) {
-        Scanner scanner = new Scanner(System.in);
-        int opc = 0;
+        int opc;
         do {
             Listado.listarMenu("Equipo");
-
-            // leer opción
-            if (scanner.hasNextInt()) {
-                opc = scanner.nextInt();
-                scanner.nextLine(); // limpiar el buffer
-            } else {
-                System.out.println("Entrada inválida, ingrese un número.");
-                scanner.nextLine(); // descartar entrada incorrecta
-                continue;
-            }
+            opc = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese su opcion: ");
 
             switch (opc) {
                 case 1 -> {
-                    // Solicitar datos de Equipo
                     // Nombre
-                    String nombre = CFZValidatorUtils.solicitarEntradaPorTeclado();
-                    // Pais
-                    String pais = CFZValidatorUtils.solicitarEntradaPorTeclado();
+                    String nombre = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese el nombre del equipo: ");
+                    // País
+                    String pais = CFZValidatorUtils.solicitarEntradaPorTeclado("Ingrese el país del equipo: ");
                     // Temporadas
-                    Integer temporadas = CFZValidatorUtils.solicitarNumeroPorTeclado();
+                    Integer temporadas = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese la cantidad de temporadas: ");
 
                     Equipo equipo = controladorEquipo.alta(nombre, pais, temporadas);
                 }
@@ -42,11 +31,13 @@ public class VistaEquipo {
                     controladorEquipo.baja();
                 }
                 case 3 -> controladorEquipo.modificacion();
-                case 4 -> controladorEquipo.consulta();
+                case 4 -> {
+
+                    controladorEquipo.consulta(CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese el ID del equipo: "));
+                }
                 case 5 -> System.out.println("Saliendo...");
                 default -> System.out.println("Opción incorrecta.");
             }
         } while (opc != 5);
-        scanner.close();
     }
 }

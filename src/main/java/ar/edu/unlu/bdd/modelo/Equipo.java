@@ -25,7 +25,6 @@ public class Equipo {
     }
 
     public Equipo(String nombre, String paisOrigen, int temporadasCompetidas) {
-        this();
         this.nombre = nombre;
         this.paisOrigen = paisOrigen;
         this.temporadasCompetidas = temporadasCompetidas;

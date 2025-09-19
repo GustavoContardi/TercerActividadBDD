@@ -6,13 +6,9 @@ import ar.edu.unlu.bdd.controlador.ControladorEquipo;
 import ar.edu.unlu.bdd.controlador.ControladorPiloto;
 import org.hibernate.SessionFactory;
 
-import java.util.Scanner;
-
 public class Menu {
     public Menu(SessionFactory sessionFactory) {
-
-        Scanner scanner = new Scanner(System.in);
-        int opc = 0;
+        int opc;
         do {
             System.out.println("\n----------------------------------------------");
             System.out.println("ACTIVIDAD Nº3 BD 2 - GRUPO 10");
@@ -22,29 +18,21 @@ public class Menu {
             System.out.println("3 - Carreras");
             System.out.println("4 - Participaciones");
             System.out.println("5 - Salir");
-            System.out.print("Ingrese su opcion: ");
 
-            // leer opción
-            if (scanner.hasNextInt()) {
-                opc = scanner.nextInt();
-                scanner.nextLine(); // limpiar el buffer
-            } else {
-                System.out.println("Entrada inválida, ingrese un número.");
-                scanner.nextLine(); // descartar entrada incorrecta
-                continue;
-            }
+            opc = CFZValidatorUtils.solicitarNumeroPorTeclado("Ingrese su opcion: ");
 
             switch (opc) {
                 case 1 -> operarPilotos(sessionFactory);
                 case 2 -> operarEquipos(sessionFactory);
                 case 3 -> operarCarreras(sessionFactory);
                 case 4 -> operarParticipaciones(sessionFactory);
-                case 5 -> System.out.println("Saliendo...");
+                case 5 -> {
+                    System.out.println("Saliendo...");
+                }
                 default -> System.out.println("Opción incorrecta.");
             }
         } while (opc != 5);
 
-        scanner.close();
     }
 
     private static void operarPilotos(SessionFactory sessionFactory) {
