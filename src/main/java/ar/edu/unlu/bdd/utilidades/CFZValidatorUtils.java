@@ -12,7 +12,7 @@ public class CFZValidatorUtils {
      *
      * @return número ingresado por el usuario
      */
-    public static int pedirCantidadProductoTeclado() {
+    public static int solicitarNumeroPorTeclado() {
         //Inicializaciones
         int numero = 0;
         boolean entrada;
