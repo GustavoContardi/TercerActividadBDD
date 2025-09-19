@@ -10,13 +10,17 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        // Se inicia la conexión a la base de datos.
-        try (SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory()) {
+        SessionFactory sessionFactory = null;
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
             logger.info("Conexión exitosa a la base de datos.");
             new Menu(sessionFactory);
         } catch (Exception e) {
             logger.error("No se pudo conectar a la base de datos. Error: {}", e.getMessage(), e);
         } finally {
+            if (sessionFactory != null) {
+                sessionFactory.close();
+            }
             logger.info("Se ha finalizado la ejecución.");
         }
     }

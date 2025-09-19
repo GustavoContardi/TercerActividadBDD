@@ -6,14 +6,16 @@
         <property name="hibernate.connection.url">jdbc:mysql://10.101.0.12:3306/ormPrueba10</property>
         <property name="hibernate.connection.username">user10</property>
         <property name="hibernate.connection.password">user10</property>
-
-        <!-- Dialect: en Hibernate 6 conviene usar el dialecto genérico MySQL (detecta versión automáticamente). -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <!-- mappings... -->
+        <!-- Entidades -->
+        <mapping class="ar.edu.unlu.bdd.modelo.Carrera"/>
+<!--        <mapping class="ar.edu.unlu.bdd.modelo.CompiteEn"/>-->
+        <mapping class="ar.edu.unlu.bdd.modelo.Equipo"/>
+        <mapping class="ar.edu.unlu.bdd.modelo.Piloto"/>
     </session-factory>
 </hibernate-configuration>

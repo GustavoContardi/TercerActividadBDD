@@ -3,7 +3,7 @@ package ar.edu.unlu.bdd.modelo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="COMPITE_EN")
+@Table(name="TBL_COMPITE_EN")
 public class CompiteEn {
 
     // FK FK FK
